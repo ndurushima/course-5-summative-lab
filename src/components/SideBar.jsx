@@ -1,12 +1,10 @@
 import React from "react";
+import SearchBar from "./SearchBar";
 
-export default function SearchBar({ value, onChange }) {
+export default function Sidebar({ search, onSearch }) {
   return (
-    <input
-      style={{ width: "100%", padding: "0.5rem" }}
-      placeholder="Search for coffees..."
-      value={value}
-      onChange={e => onChange(e.target.value)}
-    />
+    <aside style={{ width: 200, padding: "1rem", background: "#f5f5f5" }}>
+      <SearchBar value={search} onChange={onSearch} />
+    </aside>
   );
 }
