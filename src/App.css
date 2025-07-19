@@ -1,0 +1,33 @@
+.form-container {
+    background: #8b6b4d;
+    padding: 20px;
+}
+
+.form-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #5e4031cc;
+    border-radius: 8px;
+    color: #f0e7db
+                
+}
+
+input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-top: 0.3rem;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #7e2b0a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+                            
+}
