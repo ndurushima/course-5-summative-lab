@@ -12,32 +12,26 @@ export function CoffeeProvider({ children }) {
       .then(setCoffees);
   }, []);
 
-  //  POST new coffee
-  function addCoffee(newCoffee) {
-    fetch(baseUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newCoffee),
-    })
-      .then((r) => r.json())
-      .then((saved) => setCoffees([...coffees, saved]));
-  }
-
-  //  PATCH existing coffee (admin)
   function updateCoffee(id, updates) {
-    fetch(`${baseUrl}/${id}`, {
+    return fetch(`${baseUrl}/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updates),
     })
-      .then((r) => r.json())
-      .then((saved) =>
-        setCoffees(coffees.map((c) => (c.id === id ? saved : c)))
-      );
+      .then((r) => {
+        if (!r.ok) throw new Error("Network error");
+        return r.json();
+      })
+      .then((updated) => {
+        setCoffees((prev) =>
+          prev.map((c) => (c.id.toString() === id.toString() ? updated : c))
+        );
+        return updated;
+      });
   }
 
   return (
-    <CoffeeContext.Provider value={{ coffees }}>
+    <CoffeeContext.Provider value={{ coffees, updateCoffee }}>
       {children}
     </CoffeeContext.Provider>
   );

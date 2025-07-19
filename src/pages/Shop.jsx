@@ -6,28 +6,30 @@ import ProductGrid from "../components/ProductGrid";
 
 export default function Shop() {
   const { coffees } = useContext(CoffeeContext);
-  const [search, setSearch] = useState("");
+  const [search, setSearch]   = useState("");
   const [locations, setLocations] = useState([]);
 
-  const filtered = coffees.filter((c) => {
-    return (
-      c.name.toLowerCase().includes(search.toLowerCase()) &&
-      (locations.length === 0 || locations.includes(c.location))
-    );
-  });
+  const filtered = coffees.filter((c) =>
+    c.name.toLowerCase().includes(search.toLowerCase()) &&
+    (locations.length === 0 || locations.includes(c.location))
+  );
 
   return (
-    <div>
-        <NavBar />
-        <aside>
-        <SideBar
-        search={search}
-        onSearch={setSearch}
-        locations={locations}
-        setLocations={setLocations}
-      />
+    <div className="shop-page">
+      <NavBar />
+      <div className="shop-content">
+        <aside className="shop-sidebar">
+          <SideBar
+            search={search}
+            onSearch={setSearch}
+            locations={locations}
+            setLocations={setLocations}
+          />
         </aside>
-      <ProductGrid coffees={filtered} />
+        <section className="shop-products">
+          <ProductGrid coffees={filtered} />
+        </section>
+      </div>
     </div>
   );
 }

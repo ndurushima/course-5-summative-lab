@@ -21,6 +21,13 @@
       "name": "House Blend",
       "origin": "Vietnam",
       "price": 12.00
+    },
+    {
+      "id": 3,
+      "description": "Dark Roast, Carmel flavor",
+      "name": "Carmel",
+      "origin": "Venezuela",
+      "price": 12.00
     }
    ]
 }
