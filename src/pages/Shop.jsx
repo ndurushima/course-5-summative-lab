@@ -1,18 +1,33 @@
-import React, { useContext } from "react";
-import NavBar from "../components/NavBar";
-import Sidebar from "../components/SideBar";
-import CoffeeList from "../components/CoffeeList";
+import React, { useState, useContext } from "react";
 import { CoffeeContext } from "../components/CoffeeContext";
+import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
+import ProductGrid from "../components/ProductGrid";
 
-function Shop() {
-    const { coffees } = useContext(CoffeeContext)
+export default function Shop() {
+  const { coffees } = useContext(CoffeeContext);
+  const [search, setSearch] = useState("");
+  const [locations, setLocations] = useState([]);
+
+  const filtered = coffees.filter((c) => {
     return (
-        <>
-        <NavBar />
-        <Sidebar />
-        <CoffeeList coffees={coffees}/>
-        </>
-    )
-}
+      c.name.toLowerCase().includes(search.toLowerCase()) &&
+      (locations.length === 0 || locations.includes(c.location))
+    );
+  });
 
-export default Shop
+  return (
+    <div>
+        <NavBar />
+        <aside>
+        <SideBar
+        search={search}
+        onSearch={setSearch}
+        locations={locations}
+        setLocations={setLocations}
+      />
+        </aside>
+      <ProductGrid coffees={filtered} />
+    </div>
+  );
+}

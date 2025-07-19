@@ -12,29 +12,29 @@ export function CoffeeProvider({ children }) {
       .then(setCoffees);
   }, []);
 
-//   //  POST new coffee
-//   function addCoffee(newCoffee) {
-//     fetch(baseUrl, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(newCoffee),
-//     })
-//       .then((r) => r.json())
-//       .then((saved) => setCoffees([...coffees, saved]));
-//   }
+  //  POST new coffee
+  function addCoffee(newCoffee) {
+    fetch(baseUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((r) => r.json())
+      .then((saved) => setCoffees([...coffees, saved]));
+  }
 
-//   //  PATCH existing coffee (admin)
-//   function updateCoffee(id, updates) {
-//     fetch(`${baseUrl}/${id}`, {
-//       method: "PATCH",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(updates),
-//     })
-//       .then((r) => r.json())
-//       .then((saved) =>
-//         setCoffees(coffees.map((c) => (c.id === id ? saved : c)))
-//       );
-//   }
+  //  PATCH existing coffee (admin)
+  function updateCoffee(id, updates) {
+    fetch(`${baseUrl}/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
+    })
+      .then((r) => r.json())
+      .then((saved) =>
+        setCoffees(coffees.map((c) => (c.id === id ? saved : c)))
+      );
+  }
 
   return (
     <CoffeeContext.Provider value={{ coffees }}>
